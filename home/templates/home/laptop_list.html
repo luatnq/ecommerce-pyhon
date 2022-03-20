@@ -1,0 +1,46 @@
+
+  <div class="table-responsive custom-table-responsive" >
+    <table class="table custom-table" id="laptopList">
+        <thead>
+            <tr>
+              <th scope="col" width="50">STT</th>
+              <th scope="col">Tên laptop</th>
+              <th scope="col">Chip</th>
+              <th scope="col">Man hinh</th>
+              <th scope="col">GPU</th>
+              <th scope="col">Số lượng</th>
+            </tr>
+        </thead>
+        <script language = "JavaScript">
+          var i = 1;
+        </script>
+        <tbody >
+        {% for laptop in laptops %}
+          <tr>
+            <td>{{ laptop.stt }}</td>
+            <td>{{ laptop.name }}</td>
+            <td>{{ laptop.chip }}</td>
+            <td>{{ laptop.display }}</td>
+            <td>{{ laptop.GPU }}</td>
+            <td>{{ laptop.quantity }}</td>
+            <td>  
+              <button class="btn btn-warning show-form-update" ><span><i class="fas fa-edit"></i></span>Edit</button>
+            </td>
+            <td>  
+              <button class="btn btn-danger show-form-delete" ><span><i class="fa fa-trash" aria-hidden="true"></i></span>Delete</button>
+            </td>
+            <td>  
+              <button class="btn btn-success show-form-delete" ><span><i class="fa fa-thumb-tack" aria-hidden="true"></i></span>Push to web</button>
+            </td>
+          </tr>
+          <tr class="spacer"><td colspan="100"></td></tr>
+        {% empty %}
+          <tr>
+            <td colspan="7" class="text-center bg-warning">No book</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+  </div>
+  
+  

@@ -1,0 +1,68 @@
+<div class="modal fade" id="clothesModal" tabindex="-1" aria-labelledby="clothesModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="clothesModalLabel">Thêm mới quần áo</h5>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<form action="" id="formCreateClothes">
+				{% csrf_token %}
+				<div class="modal-body">
+					<div class="row mt-3">
+						<div class="col-md-4">
+							<label for="">Tên</label>
+						</div>
+						<div class="col-md-8">
+							<input type="text" name="name" class="form-control">
+						</div>
+					</div>
+					<div class="row mt-3">
+						<div class="col-md-4">
+							<label for="">Nhãn hàng</label>
+						</div>
+						<div class="col-md-8">
+							<input type="text" name="brand" class="form-control">
+						</div>
+					</div>
+                    <div class="row mt-3">
+						<div class="col-md-4">
+							<label for="">Barcode</label>
+						</div>
+						<div class="col-md-8">
+							<input type="text" name="barcode" class="form-control">
+						</div>
+					</div>
+					<div class="row mt-3">
+						<div class="col-md-4">
+							<label for="">Size</label>
+						</div>
+						<div class="col-md-8">
+							<input type="text" name="size" class="form-control">
+						</div>
+					</div>
+					<div class="row mt-3">
+						<div class="col-md-4">
+							<label for="">Color</label>
+						</div>
+						<div class="col-md-8">
+							<input type="text" name="color" class="form-control">
+						</div>
+					</div>
+					<div class="row mt-3">
+						<div class="col-md-4">
+							<label for="">Số lượng</label>
+						</div>
+						<div class="col-md-8">
+							<input type="number" name="quantity" class="form-control">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+						<button type="button" onclick="saveOrder()" class="btn btn-primary">Lưu</button>
+					</div>
+			</form>
+		</div>
+	  </div>
+	</div>
+  </div>

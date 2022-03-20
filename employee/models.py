@@ -5,6 +5,7 @@ class Book(models.Model):
     bookName = models.CharField(max_length=50)
     author = models.CharField(max_length=50)
     barcode = models.CharField(max_length=20)
+    quantity = models.IntegerField()
 
     # def __str__(self):
     #     return self.bookName, self.barcode
@@ -13,11 +14,13 @@ class Book(models.Model):
 
 
 class MobilePhone(models.Model):
+    name = models.CharField(max_length=20)
     display = models.CharField(max_length=50)
     producer = models.CharField(max_length=50)
     barcode = models.CharField(max_length=20)
     chip = models.CharField(max_length=20)
     camera = models.CharField(max_length=10)
+    quantity = models.IntegerField()
 
     class Meta:
         db_table = "mobile_phone"
@@ -28,21 +31,26 @@ class Clothes(models.Model):
     barcode = models.CharField(max_length=20)
     size = models.CharField(max_length=20)
     color = models.CharField(max_length=10)
+    quantity = models.IntegerField()
 
     class Meta:
         db_table = "clothes"
 
 class Laptop(models.Model):
+    name = models.CharField(max_length=20)
     display = models.CharField(max_length=50)
-    price = models.FloatField()
     producer = models.CharField(max_length=50)
     barcode = models.CharField(max_length=20)
     chip = models.CharField(max_length=20)
     camera = models.CharField(max_length=10)
-    CGU = models.CharField(max_length=20)
+    GPU = models.CharField(max_length=20)
+    quantity = models.IntegerField()
+    stt = models.IntegerField()
 
     class Meta:
         db_table = "laptop"
+    def set_stt(self, x):
+        self.stt = x
 
 class Shose(models.Model):
     name = models.CharField(max_length=50)
@@ -50,15 +58,17 @@ class Shose(models.Model):
     barcode = models.CharField(max_length=20)
     size = models.CharField(max_length=20)
     color = models.CharField(max_length=10)
+    quantity = models.IntegerField()
 
     class Meta:
         db_table = "shose"
 
 class Electronic(models.Model):
-    price = models.FloatField()
+    name = models.CharField(max_length=20)
     producer = models.CharField(max_length=50)
     barcode = models.CharField(max_length=20)
     type = models.CharField(max_length=20)
+    quantity = models.IntegerField()
 
     class Meta:
         db_table = "electronic"
@@ -103,7 +113,6 @@ class BookItem(models.Model):
     name = models.CharField(max_length=256)
     discount = models.IntegerField(null=True)
     price = models.IntegerField(null=True)
-    title = models.CharField(max_length=256, null=True)
     book = models.ForeignKey(Book, on_delete=models.CASCADE, null=True)
     urlImage = models.CharField(max_length=500)
 
@@ -115,7 +124,6 @@ class LaptopItem(models.Model):
     discount = models.IntegerField(null=True)
     price = models.IntegerField(null=True)
     urlImage = models.CharField(max_length=500)
-    title = models.CharField(max_length=256, null=True)
     laptop = models.ForeignKey(Laptop, on_delete=models.CASCADE, null=True)
 
     class Meta:
@@ -127,7 +135,6 @@ class ClothesItem(models.Model):
     discount = models.IntegerField(null=True)
     price = models.IntegerField(null=True)
     urlImage = models.CharField(max_length=500)
-    title = models.CharField(max_length=256, null=True)
     clothes = models.ForeignKey(Clothes, on_delete=models.CASCADE, null=True)
 
     class Meta:

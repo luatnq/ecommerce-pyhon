@@ -1,0 +1,48 @@
+
+{% load static %}
+<div class="table-responsive custom-table-responsive" >
+  <table class="table custom-table" id="bookList">
+      <thead>
+          <tr>
+              <th scope="col" width="50">STT</th>
+              <th scope="col">Tên</th>
+              <th scope="col">Tác giả</th>
+              <th scope="col">Barcode</th>
+              <th scope="col">Số lượng</th>
+          </tr>
+      </thead>
+      <tbody >
+        <script language = "JavaScript">
+          var i = 1;
+        </script>
+        {% for book in books %}
+        <tr>
+          <td><script language = "JavaScript"> document.write(i++);  </script></td>
+          <td>{{ book.bookName }}</td>
+          <td>{{book.author}} </td>
+          <td>{{book.barcode}} </td>
+          <td>{{ book.quantity }}</td>
+          <td>  
+            <button class="btn btn-warning show-form-update" data-bs-toggle="modal" data-bs-target="#editBookModal">
+              <span><i class="fas fa-edit"></i></span>Edit</button>
+          </td>
+          <td>  
+            <button class="btn btn-danger show-form-delete" ><span><i class="fa fa-trash" aria-hidden="true"></i></span>Delete</button>
+          </td>
+          <td>  
+            <button class="btn btn-success show-form-delete" ><span><i class="fa fa-thumb-tack" aria-hidden="true"></i></span>Push to web</button>
+          </td>
+        </tr>
+        <tr class="spacer"><td colspan="100"></td></tr>
+      {% empty %}
+        <tr>
+          <td colspan="7" class="text-center bg-warning">No book</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+  </table>
+</div>
+
+<div>
+  {% include "home/edit_book.html" %}
+</div>

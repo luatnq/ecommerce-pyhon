@@ -1,24 +1,59 @@
-<!DOCTYPE html>
+{% extends 'home/base.html' %}
 
-<html>
-    <head>
-        {% load static %}
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        
-        <title>Home</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'home/style.css' %}" >
-    </head>
-    <body>
-        <h1>Mai beos</h1>
-        <div class = "menu">
-            <ul>
-                <li>mai 1 </li>
-                <li>mai 1 </li>
-            </ul>
+    {% block content %}
+        <div class="row my-5">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active " aria-current="page">Quản lý đơn hàng</li>
+                </ol>
+            </nav>
         </div>
-        <script src="" async defer></script>
-    </body>
-</html>
+        <div class="row my-4">
+            <div class="mx-5">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#bookModal"><i class="fa fa-plus"></i> Thêm mới sách</button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#laptopModal"><i class="fa fa-plus"></i> Thêm laptop</button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#mobilePhoneModal"><i class="fa fa-plus"></i> Thêm mobile phone</button>
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#electronicModal"><i class="fa fa-plus"></i> Thêm electronic</button>
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#clothesModal"><i class="fa fa-plus"></i> Thêm quần áo</button>
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#shoseModal"><i class="fa fa-plus"></i> Thêm giày</button>
+            </div>
+            <div class="mx-5">
+                {% csrf_token %}
+                    <select id = "productType" aria-label="Default select example" class = "product">
+                        <option selected="selected" value = "1">Sách</option>
+                        <option value="2">Laptop</option>
+                        <option value="3">Mobile-Phone</option>
+                        <option value="4">Shose</option>
+                        <option value="5">Clothes</option>
+                        <option value="6">Electronic</option>
+                    </select>
+            </div>
+            <div id = "list_1">
+                {% include "home/book_list.html" %}
+            </div>
+           
+            <div id = "list_2">
+                {% include "home/laptop_list.html" %}
+            </div>
+        
+        </div>
+        <div>
+            {% include "home/add_book.html" %}
+        </div>
+        <div>
+            {% include "home/add_laptop.html" %}
+        </div>
+        <div>
+            {% include "home/add_clothes.html" %}
+        </div>
+        <div>
+            {% include "home/add_electronic.html" %}
+        </div>
+        <div>
+            {% include "home/add_shose.html" %}
+        </div>
+        <div>
+            {% include "home/add_mobile_phone.html" %}
+        </div>
+
+    {% endblock %}

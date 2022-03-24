@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var value = $('#productType').find(":selected").val();
-    if (value == 7) {
+    if (value == 1) {
         $('#list_2').css("display", "none");
     }
 });
@@ -12,7 +12,9 @@ function saveBook() {
         data: $("#formCreateBook").serialize(),
         success: (response) => {
             $('#bookModal').modal('hide');
-            $('#bookList tbody').html(response.book_list)
+            $('#list_2').css("display", "none");
+            $('#list_1').css("display", "block");
+            $('#list_1').html(response.book_list)
         },
     });
 }
@@ -29,14 +31,29 @@ function saveLaptop() {
     });
 }
 
+function saveBookItem() {
+    $.ajax({
+        url: "/home/create_book_item",
+        type: "POST",
+        data: $("#formCreateBookItem").serialize(),
+        success: (response) => {
+            $('#bookItemModal').modal('hide');
+
+        },
+    });
+}
+
+
 function bookList() {
-    $("#bookList").children().remove();
+    // $("#bookList").children().remove();
     $.ajax({
         url: "/home/",
         method: "POST",
         success: function(response) {
             console.log("success");
-            $('#bookList tbody').html(data.bookList)
+            $('#list_2').css("display", "none");
+            $('#list_1').css("display", "block");
+            $('#bookList tbody').html(response.books)
         },
     });
 }
@@ -47,7 +64,7 @@ function laptopList() {
         url: "/home/laptops",
         method: "POST",
         success: function(response) {
-            console.log(response);
+            console.log(response.laptop_list);
             $('#list_1').css("display", "none");
             $('#list_2').css("display", "block");
             $('#list_2').html(response.laptop_list)
@@ -61,11 +78,48 @@ $('#productType').on('change', function() {
     if (value == 2) {
         laptopList();
     }
+    if (value == 1) {
+        bookList();
+    }
 });
 
-function editBook() {
+function editBook(id) {
+    $.ajax({
+        url: "/home/book_detail",
+        method: "POST",
+        data: { id: id },
+        success: (response) => {
+            console.log(response)
 
+            let item = JSON.parse(response);
+            $("#id").val(item[0].pk);
+            console.log(item[0].pk);
+            $("#bookName").val(item[0].fields.bookName);
+            $("#barcode").val(item[0].fields.barcode);
+            $("#quantity").val(item[0].fields.quantity);
+            $("#author").val(item[0].fields.author);
+
+            $('#editBookModal').modal('show');
+        },
+    });
 }
+
+function updateBook() {
+    $.ajax({
+        url: "/home/update_book",
+        type: "POST",
+        data: $("#formEditBook").serialize(),
+        success: (response) => {
+
+            $('#editBookModal').modal('hide');
+            $('#list_2').css("display", "none");
+            $('#list_1').css("display", "block");
+            $('#list_1').html(response.book_list)
+        },
+    });
+}
+
+// $('#editBookModal').on("click", ".show-form-update", editBook);
 
 
 

@@ -6,6 +6,7 @@ class Book(models.Model):
     author = models.CharField(max_length=50)
     barcode = models.CharField(max_length=20)
     quantity = models.IntegerField()
+    stt = models.IntegerField()
 
     # def __str__(self):
     #     return self.bookName, self.barcode
@@ -21,6 +22,7 @@ class MobilePhone(models.Model):
     chip = models.CharField(max_length=20)
     camera = models.CharField(max_length=10)
     quantity = models.IntegerField()
+    stt = models.IntegerField()
 
     class Meta:
         db_table = "mobile_phone"
@@ -32,6 +34,7 @@ class Clothes(models.Model):
     size = models.CharField(max_length=20)
     color = models.CharField(max_length=10)
     quantity = models.IntegerField()
+    stt = models.IntegerField()
 
     class Meta:
         db_table = "clothes"
@@ -59,6 +62,7 @@ class Shose(models.Model):
     size = models.CharField(max_length=20)
     color = models.CharField(max_length=10)
     quantity = models.IntegerField()
+    stt = models.IntegerField()
 
     class Meta:
         db_table = "shose"
@@ -69,6 +73,7 @@ class Electronic(models.Model):
     barcode = models.CharField(max_length=20)
     type = models.CharField(max_length=20)
     quantity = models.IntegerField()
+    stt = models.IntegerField()
 
     class Meta:
         db_table = "electronic"
@@ -111,7 +116,7 @@ class Employee(models.Model):
 
 class BookItem(models.Model):
     name = models.CharField(max_length=256)
-    discount = models.IntegerField(null=True)
+    discount = models.CharField(max_length=256)
     price = models.IntegerField(null=True)
     book = models.ForeignKey(Book, on_delete=models.CASCADE, null=True)
     urlImage = models.CharField(max_length=500)
@@ -121,7 +126,7 @@ class BookItem(models.Model):
 
 class LaptopItem(models.Model):
     name = models.CharField(max_length=256)
-    discount = models.IntegerField(null=True)
+    discount = models.CharField(max_length=256)
     price = models.IntegerField(null=True)
     urlImage = models.CharField(max_length=500)
     laptop = models.ForeignKey(Laptop, on_delete=models.CASCADE, null=True)
@@ -132,7 +137,7 @@ class LaptopItem(models.Model):
 
 class ClothesItem(models.Model):
     name = models.CharField(max_length=256)
-    discount = models.IntegerField(null=True)
+    discount = models.CharField(max_length=256)
     price = models.IntegerField(null=True)
     urlImage = models.CharField(max_length=500)
     clothes = models.ForeignKey(Clothes, on_delete=models.CASCADE, null=True)

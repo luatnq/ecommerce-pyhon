@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'dajaxice',
     'dajax',
     'corsheaders',
+    'client',
 ]
 
 MIDDLEWARE = [
@@ -82,25 +83,25 @@ CORS_ALLOWED_ORIGINS = [
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 TEMPLATE_LOADERS = (
-   'django.template.loaders.filesystem.Loader',
-   'django.template.loaders.app_directories.Loader',
-   'django.template.loaders.eggs.Loader',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.eggs.Loader',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-   'django.contrib.auth.context_processors.auth',
-   'django.core.context_processors.debug',
-   'django.core.context_processors.i18n',
-   'django.core.context_processors.media',
-   'django.core.context_processors.static',
-   'django.core.context_processors.request',
-   'django.contrib.messages.context_processors.messages'
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages'
 )
 
 STATICFILES_FINDERS = (
-   'django.contrib.staticfiles.finders.FileSystemFinder',
-   'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-   'dajaxice.finders.DajaxiceFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'dajaxice.finders.DajaxiceFinder',
 )
 
 DAJAXICE_MEDIA_PREFIX = 'dajaxice'
@@ -108,14 +109,14 @@ DAJAXICE_MEDIA_PREFIX = 'dajaxice'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-   'default': {
-      'ENGINE': 'django.db.backends.mysql',
-      'NAME': 'db',
-      'USER': 'root',
-      'PASSWORD': 'root',
-      'HOST': '127.0.0.1',
-      'PORT': '3306',
-   }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
 }
 
 
